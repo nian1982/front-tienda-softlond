@@ -23,84 +23,79 @@ import { Product } from '../../models/product.model';
       Nuevo Producto
     </a>
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Presentación</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th *ngIf="auth.isAdmin()">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of products">
-          <td>{{ p.id }}</td>
-          <td>{{ p.name }}</td>
-          <td>{{ p.presentation }}</td>
-          <td>{{ p.price }}</td>
-          <td>{{ p.stock }}</td>
-          <td class="actions" *ngIf="auth.isAdmin()">
-            <!-- Botón Editar (azul) -->
-            <a *ngIf="auth.isAdmin()"
-               [routerLink]="['/products', p.id, 'edit']"
-               class="icon-btn edit"
-               title="Editar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </a>
-
-            <!-- Botón Eliminar (rojo) -->
-            <button *ngIf="auth.isAdmin()"
-                    (click)="delete(p.id!)"
-                    class="icon-btn delete"
-                    title="Eliminar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"/>
-                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                <path d="M10 11v6"/>
-                <path d="M14 11v6"/>
-                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-              </svg>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p *ngIf="products.length === 0">No hay productos.</p>
-
-    <!-- Botón Volver (gris) -->
-    <a routerLink="/stores" *ngIf="storeId" class="btn-back" title="Volver a tiendas">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="19" y1="12" x2="5" y2="12"/>
-        <polyline points="12 19 5 12 12 5"/>
-      </svg>
-      Volver a tiendas
-    </a>
+      <table style="margin:16px 24px;width:calc(100% - 48px)">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Presentación</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th *ngIf="auth.isAdmin()">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of products">
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.presentation }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.stock }}</td>
+            <td class="actions" *ngIf="auth.isAdmin()">
+              <a *ngIf="auth.isAdmin()"
+                 [routerLink]="['/products', p.id, 'edit']"
+                 class="icon-btn edit"
+                 title="Editar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </a>
+              <button *ngIf="auth.isAdmin()"
+                      (click)="delete(p.id!)"
+                      class="icon-btn delete"
+                      title="Eliminar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/>
+                  <path d="M14 11v6"/>
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="products.length === 0">No hay productos.</p>
+      <a routerLink="/stores" *ngIf="storeId" class="btn-back" title="Volver a tiendas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Volver a tiendas
+      </a>
   `,
   styles: [`
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid #ccc; padding: 8px; text-align: left; }
-    tbody tr:hover { background: #f5f5f5; }
+    tbody tr:nth-child(even) { background: #f9f9f9; }
+    tbody tr:hover { background: #e0e0e0; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
+      padding: 10px 22px;
       background: #1976d2;
       color: white;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 6px;
       margin: 8px 0;
-      font-size: 14px;
+      font-size: 15px;
     }
     .btn:hover { background: #1565c0; }
 
@@ -108,13 +103,13 @@ import { Product } from '../../models/product.model';
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
+      padding: 10px 22px;
       background: #607d8b;
       color: white;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 6px;
       margin-top: 8px;
-      font-size: 14px;
+      font-size: 15px;
     }
     .btn-back:hover { background: #546e7a; }
 
@@ -124,8 +119,8 @@ import { Product } from '../../models/product.model';
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 6px;
       border: none;
       cursor: pointer;

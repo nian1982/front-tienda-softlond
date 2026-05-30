@@ -31,7 +31,7 @@ import { AuthService } from '../../services/auth.service';
   `,
   styles: [`
     input { margin: 8px 0 4px; padding: 6px; box-sizing:border-box; }
-    button { padding: 8px 16px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button { padding: 10px 22px; background: #1976d2; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; }
     button:disabled { opacity: 0.6; }
   `]
 })

@@ -21,94 +21,87 @@ import { Store } from '../../models/store.model';
       Nueva Tienda
     </a>
 
-    <table>
-      <thead>
-        <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Acciones</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let s of stores">
-          <td>{{ s.id }}</td>
-          <td>{{ s.name }}</td>
-          <td>{{ s.description }}</td>
-          <td class="actions">
-
-            <!-- Editar (azul) -->
-            <a *ngIf="auth.isAdmin()"
-               [routerLink]="['/stores', s.id, 'edit']"
-               class="icon-btn edit"
-               title="Editar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </a>
-
-            <!-- Eliminar (rojo) -->
-            <button *ngIf="auth.isAdmin()"
-                    (click)="delete(s.id!)"
-                    class="icon-btn delete"
-                    title="Eliminar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6"/>
-                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                <path d="M10 11v6"/><path d="M14 11v6"/>
-                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-              </svg>
-            </button>
-
-            <!-- Ver productos (verde) -->
-            <a [routerLink]="['/stores', s.id, 'products']"
-               class="icon-btn view"
-               title="Ver productos">
-              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 0 1-8 0"/>
-              </svg>
-            </a>
-
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p *ngIf="stores.length === 0">No hay tiendas registradas.</p>
+      <table style="margin:16px 24px;width:calc(100% - 48px)">
+        <thead>
+          <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of stores">
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.description }}</td>
+            <td class="actions">
+              <a *ngIf="auth.isAdmin()"
+                 [routerLink]="['/stores', s.id, 'edit']"
+                 class="icon-btn edit"
+                 title="Editar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </a>
+              <button *ngIf="auth.isAdmin()"
+                      (click)="delete(s.id!)"
+                      class="icon-btn delete"
+                      title="Eliminar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/><path d="M14 11v6"/>
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+              </button>
+              <a [routerLink]="['/stores', s.id, 'products']"
+                 class="icon-btn view"
+                 title="Ver productos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                  <line x1="3" y1="6" x2="21" y2="6"/>
+                  <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="stores.length === 0">No hay tiendas registradas.</p>
   `,
   styles: [`
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid #ccc; padding: 8px; text-align: left; }
-    tbody tr:hover { background: #f5f5f5; }
+    tbody tr:nth-child(even) { background: #f9f9f9; }
+    tbody tr:hover { background: #e0e0e0; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
+      padding: 10px 22px;
       background: #1976d2;
       color: white;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 6px;
       margin: 8px 0;
-      font-size: 14px;
+      font-size: 15px;
     }
     .btn:hover { background: #1565c0; }
 
-    .actions { display: flex; gap: 6px; align-items: center; }
+    .actions { display: flex; gap: 6px; align-items: center; justify-content: center; min-width: 80px; }
 
     .icon-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 4px;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
       border: none;
       cursor: pointer;
       padding: 0;
       text-decoration: none;
-      line-height: 1;
       transition: background 0.2s, color 0.2s;
     }
 

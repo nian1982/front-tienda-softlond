@@ -42,7 +42,7 @@ import { Store } from '../../models/store.model';
           <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th *ngIf="auth.isAdmin()">Estado</th><th *ngIf="auth.isAdmin()">Acciones</th></tr>
         </thead>
         <tbody>
-          <tr *ngFor="let s of filteredStores()" [class.inactive]="!s.active">
+          <tr *ngFor="let s of stores" [class.inactive]="!s.active">
             <td>{{ s.id }}</td>
             <td>{{ s.name }}</td>
             <td>{{ s.description }}</td>
@@ -86,6 +86,7 @@ import { Store } from '../../models/store.model';
   styles: [`
     table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid #ccc; padding: 8px; text-align: left; }
+    .text-right { text-align: right; }
     tbody tr:nth-child(even) { background: #f9f9f9; }
     tbody tr:hover { background: #e0e0e0; }
     tbody tr.inactive { opacity: 0.6; }

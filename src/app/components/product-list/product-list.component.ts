@@ -51,9 +51,9 @@ import { Product } from '../../models/product.model';
             <th>ID</th>
             <th>Nombre</th>
             <th>Presentación</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Estado</th>
+            <th class="text-right">Precio</th>
+            <th class="text-right">Stock</th>
+            <th *ngIf="auth.isAdmin()">Estado</th>
             <th *ngIf="auth.isAdmin()">Acciones</th>
           </tr>
         </thead>
@@ -62,8 +62,8 @@ import { Product } from '../../models/product.model';
             <td>{{ p.id }}</td>
             <td>{{ p.name }}</td>
             <td>{{ p.presentation }}</td>
-            <td>{{ p.price }}</td>
-            <td>{{ p.stock }}</td>
+            <td class="text-right">{{ p.price }}</td>
+            <td class="text-right">{{ p.stock }}</td>
             <td *ngIf="auth.isAdmin()">
               <label class="switch" (click)="toggleStatus(p)">
                 <input type="checkbox" [checked]="p.active">
@@ -120,6 +120,7 @@ import { Product } from '../../models/product.model';
   styles: [`
     table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid #ccc; padding: 8px; text-align: left; }
+    .text-right { text-align: right; }
     tbody tr:nth-child(even) { background: #f9f9f9; }
     tbody tr:hover { background: #e0e0e0; }
     tbody tr.inactive { opacity: 0.6; }

@@ -17,6 +17,10 @@ export class ApiService {
     return this.http.get<ApiResponse<Product[]>>(`${this.baseUrl}/products`).pipe(map(r => r.data));
   }
 
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<ApiResponse<Product[]>>(`${this.baseUrl}/products/all`).pipe(map(r => r.data));
+  }
+
   getProduct(id: string): Observable<Product> {
     return this.http.get<ApiResponse<Product>>(`${this.baseUrl}/products/${id}`).pipe(map(r => r.data));
   }
@@ -42,6 +46,10 @@ export class ApiService {
     return this.http.get<ApiResponse<Store[]>>(`${this.baseUrl}/stores`).pipe(map(r => r.data));
   }
 
+  getAllStores(): Observable<Store[]> {
+    return this.http.get<ApiResponse<Store[]>>(`${this.baseUrl}/stores/all`).pipe(map(r => r.data));
+  }
+
   getStore(id: string): Observable<Store> {
     return this.http.get<ApiResponse<Store>>(`${this.baseUrl}/stores/${id}`).pipe(map(r => r.data));
   }
@@ -58,7 +66,15 @@ export class ApiService {
     return this.http.delete<ApiResponse<void>>(`${this.baseUrl}/stores/${id}`).pipe(map(() => undefined));
   }
 
+  reactivateStore(id: string): Observable<Store> {
+    return this.http.patch<ApiResponse<Store>>(`${this.baseUrl}/stores/${id}/reactivate`, {}).pipe(map(r => r.data));
+  }
+
   getProductsByStore(storeId: string): Observable<Product[]> {
     return this.http.get<ApiResponse<Product[]>>(`${this.baseUrl}/stores/${storeId}/products`).pipe(map(r => r.data));
+  }
+
+  reactivateProduct(id: string): Observable<Product> {
+    return this.http.patch<ApiResponse<Product>>(`${this.baseUrl}/products/${id}/reactivate`, {}).pipe(map(r => r.data));
   }
 }
